@@ -50,7 +50,7 @@ const todoList = () => {
     let output = ''
     list.forEach((item) => {
       const notToday = item.dueDate !== today
-      output += `[${item.completed ? 'x' : ' '}] ${item.title} ${notToday ? item.dueDate : ' '}\n`
+      output += `[${item.completed ? 'x' : ' '}] ${item.title} ${notToday ? item.dueDate : ' '}`
     })
     return output
   }
