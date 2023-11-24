@@ -12,7 +12,6 @@ const args = minimist(process.argv.slice(2),
     }
   }
 )
-// console.log(typeof (args.port))
 let homeContent = ''
 let projectContent = ''
 let registrationContent = ''
