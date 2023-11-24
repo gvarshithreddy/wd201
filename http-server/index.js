@@ -1,6 +1,18 @@
+const minimist = require('minimist')
 const http = require('http')
 const fs = require('fs')
 
+const args = minimist(process.argv.slice(2),
+  {
+    alias: {
+      port: 'p'
+    },
+    default: {
+      port: 3000
+    }
+  }
+)
+// console.log(typeof (args.port))
 let homeContent = ''
 let projectContent = ''
 let registrationContent = ''
@@ -50,4 +62,4 @@ http
     }
     res.end()
   })
-  .listen(3000)
+  .listen(args.port)
