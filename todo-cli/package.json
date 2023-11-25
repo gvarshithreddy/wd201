@@ -4,7 +4,7 @@
   "description": "",
   "main": "todo.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "Varshith <gvarshithreddy8@gmail.com>",
   "license": "ISC",
@@ -13,6 +13,7 @@
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-import": "^2.29.0",
     "eslint-plugin-n": "^16.3.1",
-    "eslint-plugin-promise": "^6.1.1"
+    "eslint-plugin-promise": "^6.1.1",
+    "jest": "^29.7.0"
   }
 }
