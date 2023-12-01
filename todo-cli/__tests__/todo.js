@@ -17,33 +17,33 @@ describe("Todolist test suite", () => {
   const tomorrow = formattedDate(
     new Date(new Date().setDate(dateToday.getDate() + 1)),
   );
-  test("Should add new todo", () => {
+  test("Test to add a todo", () => {
     const todo = { title: "New todo", dueDate: "2020-12-12", completed: false };
     const prevAllLength = all.length;
     add(todo);
     expect(all.length).toBe(prevAllLength + 1);
   });
 
-  test("Should mark todo as complete", () => {
+  test("Test to mark a todo as complete.", () => {
     const todo = { title: "New todo", dueDate: "2020-12-12" };
     add(todo);
     markAsComplete(0);
     expect(all).toContainEqual({ ...todo, completed: true });
   });
 
-  test("Should return overdue todos", () => {
+  test("Test to retrieve overdue items", () => {
     const todo = { title: "New todo", dueDate: yesterday };
     add(todo);
     expect(overdue()).toContainEqual(todo);
   });
 
-  test("Should return todos due today", () => {
+  test("Test to retrieve due today items", () => {
     const todo = { title: "New todo", dueDate: today };
     add(todo);
     expect(dueToday()).toContainEqual(todo);
   });
 
-  test("Should return todos due later", () => {
+  test("Test to retrieve due later items.", () => {
     const todo = { title: "New todo", dueDate: tomorrow };
     add(todo);
     expect(dueLater()).toContainEqual(todo);
