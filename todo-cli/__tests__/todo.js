@@ -19,6 +19,7 @@ describe("Todolist test suite", () => {
   );
   beforeAll(() => {
     add({ title: "New todo 1", dueDate: today, completed: false });
+    add({ title: "New todo 1 today", dueDate: today, completed: true });
     add({ title: "New todo 2", dueDate: tomorrow, completed: false });
     add({ title: "New todo 3", dueDate: yesterday, completed: false });
   });
@@ -46,7 +47,11 @@ describe("Todolist test suite", () => {
 
   test("Test to retrieve due today items", () => {
     const todayItems = dueToday();
-    expect(todayItems.every((item) => item.dueDate === today)).toBe(true);
+    expect(
+      todayItems.every(
+        (item) => item.dueDate === today && item.completed === true,
+      ),
+    ).toBe(true);
   });
 
   test("Test to retrieve due later items.", () => {
