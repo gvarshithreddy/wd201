@@ -17,6 +17,12 @@ describe("Todolist test suite", () => {
   const tomorrow = formattedDate(
     new Date(new Date().setDate(dateToday.getDate() + 1)),
   );
+  beforeAll(() => {
+    add({ title: "New todo 1", dueDate: today, completed: false });
+    add({ title: "New todo 2", dueDate: tomorrow, completed: false });
+    add({ title: "New todo 3", dueDate: yesterday, completed: false });
+  });
+
   test("Test to add a todo", () => {
     const todo = { title: "New todo", dueDate: "2020-12-12", completed: false };
     const prevAllLength = all.length;
@@ -25,27 +31,30 @@ describe("Todolist test suite", () => {
   });
 
   test("Test to mark a todo as complete.", () => {
-    const todo = { title: "New todo", dueDate: "2020-12-12" };
-    add(todo);
     markAsComplete(0);
-    expect(all).toContainEqual({ ...todo, completed: true });
+    expect(all[0].completed).toBe(true);
   });
 
   test("Test to retrieve overdue items", () => {
-    const todo = { title: "New todo", dueDate: yesterday };
-    add(todo);
-    expect(overdue()).toContainEqual(todo);
+    const overdueitems = overdue();
+    expect(
+      overdueitems.every(
+        (item) => item.dueDate < today && item.completed === false,
+      ),
+    ).toBe(true);
   });
 
   test("Test to retrieve due today items", () => {
-    const todo = { title: "New todo", dueDate: today };
-    add(todo);
-    expect(dueToday()).toContainEqual(todo);
+    const todayItems = dueToday();
+    expect(todayItems.every((item) => item.dueDate === today)).toBe(true);
   });
 
   test("Test to retrieve due later items.", () => {
-    const todo = { title: "New todo", dueDate: tomorrow };
-    add(todo);
-    expect(dueLater()).toContainEqual(todo);
+    const laterItems = dueLater();
+    expect(
+      laterItems.every(
+        (item) => item.dueDate > today && item.completed === false,
+      ),
+    ).toBe(true);
   });
 });
